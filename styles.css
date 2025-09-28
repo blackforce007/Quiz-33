@@ -1,0 +1,626 @@
+:root {
+    --primary-color: #1a2a3a; /* Deep Dark Blue */
+    --secondary-color: #ffaa00; /* Vibrant Orange */
+    --accent-color: #e74c3c; /* Red for wrong/danger */
+    --success-color: #2ecc71; /* Green for correct */
+    --text-color: #ecf0f1; /* Light Gray for general text */
+    --bg-color: #2c3e50; /* Medium Dark Blue for body background */
+    --card-bg: #34495e; /* Slightly lighter card background */
+    --option-bg: #4a6572; /* Option background */
+    --hover-bg: #607d8b; /* Option hover background */
+    --button-primary-bg: var(--secondary-color);
+    --button-secondary-bg: var(--success-color);
+    --button-tertiary-bg: #9b59b6; /* Purple */
+
+    --font-primary: 'Baloo Da 2', sans-serif;
+    --font-secondary: 'Oswald', sans-serif;
+
+    --border-radius-main: 15px;
+    --border-radius-sm: 8px;
+    --box-shadow-main: 0 10px 30px rgba(0, 0, 0, 0.4);
+    --box-shadow-inset: inset 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 20px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Background Animation - Optional but adds visual appeal */
+.background-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #1a2a3a, #2c3e50, #1a2a3a);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+.container {
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--box-shadow-main);
+    padding: 30px;
+    max-width: 650px; /* Slightly wider */
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 1; /* Ensure container is above background */
+    backdrop-filter: blur(5px); /* Blurs content behind container */
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+header h1 {
+    font-family: var(--font-secondary);
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+    font-size: 2.5em;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+    letter-spacing: 1px;
+}
+
+header h2 {
+    color: var(--text-color);
+    font-size: 1.3em;
+    margin-top: 0;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+.screen {
+    display: none;
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.screen.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Buttons */
+.btn {
+    color: var(--primary-color);
+    border: none;
+    padding: 15px 35px;
+    border-radius: var(--border-radius-sm);
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 10px 5px; /* Adjust margin for multiple buttons */
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background-color: var(--button-primary-bg);
+}
+.btn-secondary {
+    background-color: var(--button-secondary-bg);
+}
+.btn-tertiary {
+    background-color: var(--button-tertiary-bg);
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.btn-primary:hover { background-color: #e69100; } /* Darker primary */
+.btn-secondary:hover { background-color: #27ae60; } /* Darker secondary */
+.btn-tertiary:hover { background-color: #8e44ad; } /* Darker tertiary */
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Start Screen */
+#start-screen .tagline {
+    font-size: 1.4em;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Quiz Screen */
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    background-color: var(--card-bg);
+    padding: 15px 20px;
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--box-shadow-inset);
+}
+
+.info-box {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+}
+.info-box i {
+    margin-right: 8px;
+    color: var(--secondary-color);
+}
+
+#timer {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+.question-area {
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: var(--border-radius-main);
+    margin-bottom: 20px;
+    box-shadow: var(--box-shadow-main);
+}
+
+#question-text {
+    font-size: 1.8em;
+    margin-bottom: 30px;
+    color: var(--text-color);
+    line-height: 1.4;
+    font-weight: 700;
+}
+
+.options-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.option {
+    background-color: var(--option-bg);
+    color: var(--text-color);
+    padding: 15px 20px;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    font-size: 1.15em;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    border: 2px solid transparent; /* For feedback highlight */
+}
+
+.option:hover:not(.disabled) {
+    background-color: var(--hover-bg);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+.option.correct {
+    background-color: var(--success-color);
+    border-color: #208e4f;
+    animation: pulseCorrect 0.6s forwards;
+}
+
+.option.wrong {
+    background-color: var(--accent-color);
+    border-color: #b03a2e;
+    animation: shakeWrong 0.5s;
+}
+
+.option.disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.feedback {
+    margin-top: 15px;
+    font-size: 1.2em;
+    font-weight: 700;
+    height: 30px; /* Reserve space */
+    color: var(--text-color); /* Default color, JS will change */
+}
+
+/* Player Indicator for Correct Answer */
+.option.correct::after {
+    content: '✅';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.8em;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.progress-bar-container {
+    background-color: var(--card-bg);
+    height: 10px;
+    border-radius: 5px;
+    margin-top: 25px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow-inset);
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+    transition: width 0.3s ease-in-out;
+}
+
+
+/* Result Screen */
+#result-screen .result-title {
+    color: var(--secondary-color);
+    font-family: var(--font-secondary);
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+.result-summary {
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: var(--border-radius-main);
+    margin-bottom: 30px;
+    box-shadow: var(--box-shadow-main);
+}
+.result-summary p {
+    font-size: 1.3em;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.result-summary p i {
+    margin-left: 10px;
+    color: var(--secondary-color);
+}
+.highlight-score {
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+.correct-count { color: var(--success-color); font-weight: 700; }
+.wrong-count { color: var(--accent-color); font-weight: 700; }
+
+
+#achievements-unlocked {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: var(--border-radius-main);
+    margin-top: 20px;
+    margin-bottom: 30px;
+    box-shadow: var(--box-shadow-inset);
+    display: none; /* Hidden by default, shown if achievements unlocked */
+}
+
+#achievements-unlocked h4 {
+    color: var(--success-color);
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+#unlocked-achievements-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#unlocked-achievements-list li {
+    font-size: 1.1em;
+    color: var(--text-color);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#unlocked-achievements-list li i {
+    color: var(--secondary-color);
+    margin-right: 10px;
+}
+
+
+#leaderboard {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: var(--border-radius-main);
+    margin-top: 30px;
+    box-shadow: var(--box-shadow-inset);
+}
+
+#leaderboard .leaderboard-title {
+    color: var(--secondary-color);
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#leaderboard .leaderboard-title i {
+    margin-left: 10px;
+}
+
+#leaderboard-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#leaderboard-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 1.1em;
+    align-items: center;
+}
+#leaderboard-list li span:first-child {
+    font-weight: 700;
+    color: var(--secondary-color);
+    width: 30px;
+    text-align: left;
+}
+#leaderboard-list li span:nth-child(2) {
+    flex-grow: 1;
+    text-align: left;
+    margin-left: 10px;
+}
+#leaderboard-list li span:last-child {
+    font-size: 0.9em;
+    opacity: 0.7;
+}
+
+#leaderboard-list li:last-child {
+    border-bottom: none;
+}
+
+.share-btn {
+    background-color: var(--button-secondary-bg); /* Use success color for share */
+    color: var(--primary-color);
+}
+.share-btn:hover { background-color: #27ae60; }
+
+
+/* How to Play Screen */
+#how-to-play-screen .how-to-play-title {
+    color: var(--secondary-color);
+    font-family: var(--font-secondary);
+    font-size: 2.2em;
+    margin-bottom: 20px;
+}
+#how-to-play-screen p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+#how-to-play-screen ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+    text-align: left;
+}
+#how-to-play-screen ul li {
+    background-color: var(--option-bg);
+    padding: 10px 15px;
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 10px;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+}
+#how-to-play-screen ul li::before {
+    content: '➡️';
+    margin-right: 10px;
+    font-size: 0.9em;
+}
+.highlight {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+.highlight-green {
+    color: var(--success-color);
+    font-weight: 600;
+}
+
+
+/* Achievements Screen */
+#achievements-screen .achievements-title {
+    color: var(--secondary-color);
+    font-family: var(--font-secondary);
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#achievements-screen .achievements-title i {
+    margin-left: 10px;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.achievement-card {
+    background-color: var(--card-bg);
+    padding: 15px;
+    border-radius: var(--border-radius-sm);
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 2px solid transparent;
+}
+
+.achievement-card.unlocked {
+    border-color: var(--success-color);
+    background: linear-gradient(135deg, var(--success-color) 0%, var(--card-bg) 20%, var(--card-bg) 80%, var(--success-color) 100%);
+    background-size: 200% 200%;
+    animation: achievementBackground 5s ease infinite;
+}
+
+@keyframes achievementBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+.achievement-card i {
+    font-size: 2.5em;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+.achievement-card.unlocked i {
+    color: var(--success-color); /* Change icon color when unlocked */
+}
+.achievement-card h5 {
+    font-size: 1.1em;
+    margin: 0 0 5px 0;
+    color: var(--text-color);
+}
+.achievement-card p {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+.achievement-card.unlocked h5, .achievement-card.unlocked p {
+    color: var(--primary-color); /* Text color inside unlocked card */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    header h2 {
+        font-size: 1.1em;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        font-size: 1.1em;
+        margin: 8px 3px;
+    }
+
+    .quiz-header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+    .info-box {
+        width: 100%;
+        justify-content: center;
+    }
+
+    #question-text {
+        font-size: 1.5em;
+        margin-bottom: 25px;
+    }
+
+    .option {
+        font-size: 1em;
+        padding: 12px 15px;
+    }
+
+    .option.correct::after {
+        font-size: 1.5em;
+        right: 10px;
+    }
+
+    .result-summary p {
+        font-size: 1.1em;
+    }
+
+    #achievements-screen .achievements-title,
+    #result-screen .result-title,
+    #how-to-play-screen .how-to-play-title {
+        font-size: 1.8em;
+    }
+
+    .achievements-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.6em;
+    }
+    header h2 {
+        font-size: 0.9em;
+    }
+    .btn {
+        font-size: 1em;
+        padding: 10px 20px;
+        width: 90%;
+        margin: 5px auto;
+    }
+    #start-screen .tagline {
+        font-size: 1.2em;
+    }
+    #question-text {
+        font-size: 1.3em;
+    }
+    .option {
+        font-size: 0.95em;
+        padding: 10px 12px;
+    }
+    .info-box {
+        font-size: 0.95em;
+    }
+    .result-summary p {
+        font-size: 1em;
+    }
+    #leaderboard-list li {
+        font-size: 0.9em;
+    }
+    .achievement-card h5 {
+        font-size: 1em;
+    }
+    .achievement-card p {
+        font-size: 0.8em;
+    }
+}
