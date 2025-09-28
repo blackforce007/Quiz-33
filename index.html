@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Force 007 — সাধারণ জ্ঞান কুইজ</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+
+    <div class="container">
+        <header>
+            <h1>Black Force 007 — সাধারণ জ্ঞান কুইজ</h1>
+            <h2>সামাজিক জ্ঞান, মানুষ মানুষকে বুঝতে শিখবে</h2>
+        </header>
+
+        <div id="start-screen" class="screen active">
+            <p class="tagline">আপনার সামাজিক জ্ঞান এবং মানুষকে বোঝার ক্ষমতা পরীক্ষা করুন!</p>
+            <button id="start-btn" class="btn btn-primary">শুরু করুন</button>
+            <button id="how-to-play-btn" class="btn btn-secondary">কীভাবে খেলবেন?</button>
+            <button id="achievements-btn" class="btn btn-tertiary">অ্যাচিভমেন্টস</button>
+        </div>
+
+        <div id="quiz-screen" class="screen">
+            <div class="quiz-header">
+                <div id="question-counter" class="info-box">প্রশ্ন <span id="current-q">1</span> / <span id="total-q">50</span></div>
+                <div id="timer" class="info-box"><i class="far fa-clock"></i> <span id="time-left">30</span>s</div>
+                <div id="score-display" class="info-box"><i class="fas fa-star"></i> স্কোর: <span id="current-score">0</span></div>
+            </div>
+            <div class="question-area">
+                <h3 id="question-text"></h3>
+                <div id="options-container" class="options-container">
+                    <!-- Options will be loaded here by JavaScript -->
+                </div>
+            </div>
+            <div id="feedback" class="feedback"></div>
+            <div class="progress-bar-container">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+        </div>
+
+        <div id="result-screen" class="screen">
+            <h3 class="result-title">কুইজ শেষ!</h3>
+            <div class="result-summary">
+                <p>আপনার চূড়ান্ত স্কোর: <span id="final-score" class="highlight-score">0</span> <i class="fas fa-trophy"></i></p>
+                <p>সঠিক উত্তর: <span id="correct-answers-count" class="correct-count">0</span> <i class="fas fa-check-circle"></i></p>
+                <p>ভুল উত্তর: <span id="wrong-answers-count" class="wrong-count">0</span> <i class="fas fa-times-circle"></i></p>
+                <p>মোট সময় লেগেছে: <span id="total-time-taken">0</span> সেকেন্ড <i class="fas fa-hourglass-half"></i></p>
+                <p>সেরা স্ট্রিক: <span id="best-streak-display">0</span> <i class="fas fa-fire-alt"></i></p>
+            </div>
+
+            <div id="achievements-unlocked" class="unlocked-achievements">
+                <h4>নতুন অ্যাচিভমেন্টস!</h4>
+                <ul id="unlocked-achievements-list">
+                    <!-- Unlocked achievements will be displayed here -->
+                </ul>
+            </div>
+
+            <div id="leaderboard">
+                <h4 class="leaderboard-title">লিডারবোর্ড <i class="fas fa-chart-line"></i></h4>
+                <ul id="leaderboard-list">
+                    <!-- Leaderboard will be loaded here -->
+                </ul>
+            </div>
+            <button id="restart-btn" class="btn btn-primary">আবার খেলুন</button>
+            <button id="share-btn" class="btn btn-secondary share-btn"><i class="fas fa-share-alt"></i> শেয়ার করুন</button>
+        </div>
+
+        <div id="how-to-play-screen" class="screen">
+            <h3 class="how-to-play-title">কীভাবে খেলবেন?</h3>
+            <p>আমাদের "Black Force 007 — সাধারণ জ্ঞান কুইজ"-এ আপনাকে স্বাগতম! এখানে আপনি আপনার সামাজিক জ্ঞান এবং মানুষ চেনার ক্ষমতা পরীক্ষা করবেন।</p>
+            <ul>
+                <li>প্রতিটি প্রশ্নের জন্য আপনি <span class="highlight">১৫ বা ৩০ সেকেন্ড</span> পাবেন।</li>
+                <li>সঠিক উত্তরে <span class="highlight-green">বেস পয়েন্ট, সময় বোনাস, এবং স্ট্রিক বোনাস</span> পাবেন।</li>
+                <li>যত দ্রুত উত্তর দেবেন, তত বেশি সময় বোনাস পাবেন।</li>
+                <li>একটানা সঠিক উত্তর দিলে স্ট্রিক বোনাস বাড়বে।</li>
+                <li>ভুল উত্তরে কোনো পয়েন্ট কাটা যাবে না, তবে স্ট্রিক ভেঙে যাবে।</li>
+                <li>সময় শেষ হয়ে গেলে বা ভুল উত্তর দিলে সঠিক উত্তরটি হাইলাইট হবে।</li>
+                <li>গেম শেষে আপনার স্কোর, সঠিক/ভুল উত্তর এবং অ্যাচিভমেন্টস দেখতে পাবেন।</li>
+                <li>লিডারবোর্ডে আপনার সেরা স্কোর সংরক্ষণ করা হবে।</li>
+            </ul>
+            <button id="back-from-how-to-play" class="btn btn-primary">ফিরে যান</button>
+        </div>
+
+        <div id="achievements-screen" class="screen">
+            <h3 class="achievements-title">আপনার অ্যাচিভমেন্টস <i class="fas fa-medal"></i></h3>
+            <ul id="achievements-list" class="achievements-grid">
+                <!-- Achievements will be loaded here by JavaScript -->
+            </ul>
+            <button id="back-from-achievements" class="btn btn-primary">ফিরে যান</button>
+        </div>
+
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="correct-sound" src="sounds/correct.mp3" preload="auto"></audio>
+    <audio id="wrong-sound" src="sounds/wrong.mp3" preload="auto"></audio>
+    <audio id="timeout-sound" src="sounds/timeout.mp3" preload="auto"></audio>
+    <audio id="game-over-sound" src="sounds/gameover.mp3" preload="auto"></audio>
+    <audio id="achievement-sound" src="sounds/achievement.mp3" preload="auto"></audio>
+
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
